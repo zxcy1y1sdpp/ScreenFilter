@@ -1,4 +1,4 @@
-package com.omarea.filter;
+package com.omarea.lux;
 
 public class SpfConfig {
     public static String FILTER_SPF = "FILTER_SPF";
@@ -27,10 +27,6 @@ public class SpfConfig {
     public static String SCREENT_MAX_LIGHT = "SCREENT_MAX_LIGHT";
     public static int SCREENT_MAX_LIGHT_DEFAULT = 255;
 
-    // 屏幕最小亮度
-    public static String SCREENT_MIN_LIGHT = "SCREENT_MAX_LIGHT";
-    public static int SCREENT_MIN_LIGHT_DEFAULT = 255;
-
     // 隐藏最近任务
     public static String HIDE_IN_RECENT = "HIDE_IN_RECENT";
     public static boolean HIDE_IN_RECENT_DEFAULT = false;
@@ -45,5 +41,5 @@ public class SpfConfig {
 
     // 硬件加速
     public static String HARDWARE_ACCELERATED = "HARDWARE_ACCELERATED";
-    public static boolean HARDWARE_ACCELERATED_DEFAULT = true;
+    public static boolean HARDWARE_ACCELERATED_DEFAULT = false;
 }

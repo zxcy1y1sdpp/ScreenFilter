@@ -1,4 +1,4 @@
-package com.omarea.filter
+package com.omarea.lux
 
 import android.app.KeyguardManager
 import android.content.Context

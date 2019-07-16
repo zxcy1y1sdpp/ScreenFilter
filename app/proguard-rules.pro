@@ -20,4 +20,4 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
--keepclassmembers class com.omarea.filter.ScreenCapActivity
+-keepclassmembers class com.omarea.lux.ScreenCapActivity

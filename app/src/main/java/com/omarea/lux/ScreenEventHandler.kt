@@ -1,4 +1,4 @@
-package com.omarea.filter
+package com.omarea.lux
 
 import android.os.Handler
 import android.os.Looper

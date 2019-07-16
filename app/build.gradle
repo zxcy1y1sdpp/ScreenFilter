@@ -6,7 +6,7 @@ android {
     }
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.omarea.filter"
+        applicationId "com.omarea.lux"
         minSdkVersion 17
         targetSdkVersion 28
         versionCode 43

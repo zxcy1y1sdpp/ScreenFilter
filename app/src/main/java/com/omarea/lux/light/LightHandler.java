@@ -1,4 +1,4 @@
-package com.omarea.filter.light;
+package com.omarea.lux.light;
 
 public interface LightHandler {
     void onLuxChange(float lux);

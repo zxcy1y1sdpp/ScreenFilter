@@ -1,4 +1,4 @@
-package com.omarea.filter
+package com.omarea.lux
 
 import android.annotation.SuppressLint
 import android.app.ActivityManager
@@ -50,14 +50,14 @@ class MainActivity : AppCompatActivity() {
                 if (!GlobalStatus.filterEnabled && GlobalStatus.filterOpen != null) {
                     GlobalStatus.filterOpen?.run()
                 }
-                Toast.makeText(this, "滤镜已开启", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "亮度控制已开启", Toast.LENGTH_SHORT).show()
                 finish()
                 return
             } else if (action == "close") {
                 if (GlobalStatus.filterEnabled && GlobalStatus.filterClose != null) {
                     GlobalStatus.filterClose?.run()
                 }
-                Toast.makeText(this, "滤镜已关闭", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "亮度控制已关闭", Toast.LENGTH_SHORT).show()
                 finish()
                 return
             }
@@ -73,8 +73,6 @@ class MainActivity : AppCompatActivity() {
         if (!config.contains(SpfConfig.SCREENT_MAX_LIGHT)) {
             if (Build.PRODUCT == "perseus") { // Xiaomi MIX3 屏幕最大亮度2047
                 config.edit().putInt(SpfConfig.SCREENT_MAX_LIGHT, 2047).apply()
-                // GlobalStatus.sampleData!!.setScreentMinLight(30)
-                GlobalStatus.sampleData!!.setScreentMinLight((FilterViewConfig.FILTER_BRIGHTNESS_MAX * 0.3).toInt())
             }
         }
 
@@ -84,7 +82,7 @@ class MainActivity : AppCompatActivity() {
         setExcludeFromRecents()
         askForPermission()
 
-        // 启用滤镜
+        // 开关
         filter_switch.setOnClickListener { v ->
             val filterSwitch = v as Switch
             if (filterSwitch.isChecked) {
@@ -113,7 +111,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // 屏幕滤镜强度偏移量
+        // 屏幕亮度偏移量
         brightness_offset.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
@@ -156,16 +154,6 @@ class MainActivity : AppCompatActivity() {
             setExcludeFromRecents()
         }
 
-        // 硬件加速
-        hardware_acceleration.isChecked = config.getBoolean(SpfConfig.HARDWARE_ACCELERATED, SpfConfig.HARDWARE_ACCELERATED_DEFAULT)
-        hardware_acceleration.setOnClickListener {
-            config.edit().putBoolean(SpfConfig.HARDWARE_ACCELERATED, (it as Switch).isChecked).apply()
-            if (GlobalStatus.filterEnabled) {
-                GlobalStatus.filterClose?.run()
-                GlobalStatus.filterOpen?.run()
-            }
-        }
-
         // 自动亮度
         auto_adjustment.isChecked = Settings.System.getInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE) == Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC
     }
@@ -181,13 +169,12 @@ class MainActivity : AppCompatActivity() {
         myHandler.post {
             light_lux.text = GlobalStatus.currentLux.toString() + "lux"
             if (GlobalStatus.filterEnabled) {
-                filter_light.text = (GlobalStatus.currentFilterBrightness / 10f).toString() + "%"
+                filter_light.text = ((GlobalStatus.currentFilterBrightness * 1000f).toInt() / 10.0F).toString() + "%"
                 screen_light.text = "×"
             } else {
                 filter_light.text = "×"
                 screen_light.text = Utils.getSystemBrightness(applicationContext).toString()
             }
-            filter_alpha.text = ((GlobalStatus.currentFilterAlpah * 1000 / FilterViewConfig.FILTER_MAX_ALPHA).toInt() / 10.0).toString() + "%"
         }
     }
 

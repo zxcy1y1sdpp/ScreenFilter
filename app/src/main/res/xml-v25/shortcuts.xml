@@ -9,8 +9,8 @@
         android:shortcutShortLabel="@string/shortcut_on">
         <intent
             android:action="open"
-            android:targetClass="com.omarea.filter.MainActivity"
-            android:targetPackage="com.omarea.filter" />
+            android:targetClass="com.omarea.lux.MainActivity"
+            android:targetPackage="com.omarea.lux" />
     </shortcut>
     <shortcut
         android:enabled="true"
@@ -21,7 +21,7 @@
         android:shortcutShortLabel="@string/shortcut_off">
         <intent
             android:action="close"
-            android:targetClass="com.omarea.filter.MainActivity"
-            android:targetPackage="com.omarea.filter" />
+            android:targetClass="com.omarea.lux.MainActivity"
+            android:targetPackage="com.omarea.lux" />
     </shortcut>
 </shortcuts>

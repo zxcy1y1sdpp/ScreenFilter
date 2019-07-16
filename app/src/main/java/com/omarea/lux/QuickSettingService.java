@@ -1,4 +1,4 @@
-package com.omarea.filter;
+package com.omarea.lux;
 
 import android.content.Context;
 import android.content.Intent;
@@ -30,7 +30,7 @@ public class QuickSettingService extends TileService {
 
         int toggleState = getQsTile().getState();
 
-        // 如果磁贴为激活状态 被点击 则动作为关闭滤镜
+        // 如果磁贴为激活状态 被点击 则动作为关闭亮度控制
         if (toggleState == Tile.STATE_ACTIVE) {
             if (GlobalStatus.INSTANCE.getFilterClose() != null) {
                 GlobalStatus.INSTANCE.getFilterClose().run();
@@ -40,7 +40,7 @@ public class QuickSettingService extends TileService {
             }
             getQsTile().setState(Tile.STATE_INACTIVE);
         }
-        // 如果磁贴为未激活状态 被点击 则动作为开启滤镜
+        // 如果磁贴为未激活状态 被点击 则动作为开启亮度控制
         else if (toggleState == Tile.STATE_INACTIVE) {
             // 如果服务没启动
             if (GlobalStatus.INSTANCE.getFilterOpen() == null) {
@@ -51,7 +51,7 @@ public class QuickSettingService extends TileService {
                 } catch (java.lang.Exception ignored) {
                 }
             }
-            // 正常开启滤镜
+            // 正常开启亮度控制
             else {
                 config.edit().putBoolean(SpfConfig.FILTER_AUTO_START, true).apply();
                 GlobalStatus.INSTANCE.getFilterOpen().run();

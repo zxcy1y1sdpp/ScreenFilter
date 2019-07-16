@@ -1,25 +1,19 @@
 <resources>
-    <string name="app_name">屏幕滤镜</string>
-    <string name="screenshot_tile">正常截图</string>
-    <string name="screenshot_tile_fail">屏幕滤镜调用截图失败</string>
-    <string name="screenshot_tile_output">保存路径：</string>
+    <string name="app_name">亮度控制</string>
     <string name="sample_edit">样本数据修改</string>
-    <string name="shortcut_on">启用滤镜</string>
-    <string name="shortcut_off">关闭滤镜</string>
+    <string name="shortcut_on">开启</string>
+    <string name="shortcut_off">关闭</string>
 
     <string name="ambient_light">环境光:</string>
     <string name="scrient_light">屏幕亮度:</string>
     <string name="filter_light">物理亮度:</string>
-    <string name="filter_alpha">滤镜浓度:</string>
 
     <string name="automatic_brightness_config">自动亮度设置</string>
     <string name="other_config">其它设置</string>
     <string name="help_infos">帮助说明</string>
 
-    <string name="filter_enable">启用滤镜</string>
-    <string name="filter_disabled">禁用滤镜</string>
-    <string name="screen_min_light">最低屏幕亮度</string>
-    <string name="screen_min_light_desc">仅当屏幕亮度低于此值时才启用屏幕滤镜，可设为屏幕开启DC调光的亮度级别，对于全程PWM调光的屏幕，则应设为最高值。\n\n小米9、MIX3 建议设为30%，三星S8 建议设为95%，其它机型自测哦！</string>
+    <string name="filter_enable">开启</string>
+    <string name="filter_disabled">关闭</string>
     <string name="auto_adjustment">自动亮度</string>
     <string name="auto_adjustment_desc">此开关跟随系统自带的“自动亮度”开关</string>
     <string name="brightness_offset">亮度微调</string>
@@ -31,18 +25,14 @@
 
     <string name="hide_in_recent">从最近任务隐藏</string>
     <string name="hide_in_recent_desc">不要在最近任务列表显示本应用</string>
-    <string name="hardware_acceleration">硬件加速</string>
-    <string name="hardware_acceleration_desc">启用提高亮度变化平滑度，关闭可节省内存</string>
 
-    <string name="accessibility_description">通过辅助服务，提高滤镜显示层级，以便能够覆盖状态栏、导航栏、锁屏界面。</string>
+    <string name="accessibility_description">通过辅助服务，提高应用显示层级，以便亮度调整覆盖到更多界面。</string>
     <string name="brightness_control">亮度控制</string>
-    <string name="brightness_control_content">滤镜的自动亮度开关、手动亮度调节都是跟随系统的。\n但本应用有独立的自动亮度控制逻辑，由于实际硬件差异，使用过程可能出现屏幕过亮或过暗的情况。\n你可以从右上角进入样本编辑，自行添加样本数据来修复此问题！</string>
-    <string name="statement">工作原理</string>
-    <string name="statement_content">大多数Amoled屏幕，在低亮度时会使用低频PWM调光，容易造成眼睛疲劳。\n\n本软件会限制屏幕最低亮度，再通过调整屏幕叠加层（滤镜）的不透明度，来实现视觉亮度调整，是民间一种“另辟蹊径”的手法，并非本应用首创！！！\n\n启用滤镜后，屏幕会根据亮度不同出现不同程度的色彩失真，并且会导致屏幕截图变暗！</string>
+    <string name="brightness_control_content">本应用有独立的自动亮度控制逻辑，由于实际硬件差异，使用过程可能出现屏幕过亮或过暗的情况。\n你可以从右上角进入样本编辑，自行添加样本数据来修复此问题！</string>
     <string name="author">—— 嘟嘟斯基\n http://vtools.omarea.com</string>
 
-    <string name="quick_tile_on">已开启屏幕滤镜</string>
-    <string name="quick_tile_off">已开关闭幕滤镜</string>
+    <string name="quick_tile_on">已开启屏幕亮度控制</string>
+    <string name="quick_tile_off">已开关屏幕亮度控制</string>
 
     <string name="sample_chart">当前样本数据</string>
     <string name="sample_desc_title">样本说明</string>

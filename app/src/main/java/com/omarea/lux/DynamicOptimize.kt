@@ -1,4 +1,4 @@
-package com.omarea.filter
+package com.omarea.lux
 
 import android.content.Context
 import android.hardware.Sensor
@@ -46,22 +46,18 @@ class DynamicOptimize(private var context: Context) {
     /**
      * @param sensitivity 角度亮度纠正的灵敏度
      */
-    fun brightnessOptimization(sensitivity: Float = 0.5F, lux: Float, screentMinLight:Int): Double {
-        var offsetValue: Double = 0.toDouble();
+    fun brightnessOptimization(sensitivity: Float = 0.5F, lux: Float): Float {
+        var offsetValue: Float = 0F
         val calendar = Calendar.getInstance()
         val hour = calendar.get(Calendar.HOUR_OF_DAY)
         if (hour >= 21 || hour < 7) {
             if (lux <= 0f) {
                 if (hour > 20) {
-                    offsetValue -= ((hour - 20) / 10.0)
-                    if (hour > 20) {
-                        offsetValue -= (FilterViewConfig.FILTER_BRIGHTNESS_MAX - screentMinLight) / 6.0F / FilterViewConfig.FILTER_BRIGHTNESS_MAX
-                    }
+                    offsetValue -= ((hour - 20) / 10.0F)
                 } else if (hour > 5) {
-                    offsetValue += ((hour - 7) / 10.0)
+                    offsetValue += ((hour - 7) / 10.0F)
                 } else {
-                    offsetValue -= 0.3
-                    offsetValue -= (FilterViewConfig.FILTER_BRIGHTNESS_MAX - screentMinLight) / 6.0F / FilterViewConfig.FILTER_BRIGHTNESS_MAX
+                    offsetValue -= 0.3F
                 }
             }
         } else if (sensorEventListener != null) {
@@ -70,7 +66,7 @@ class DynamicOptimize(private var context: Context) {
                 // 可能导致微信支付界面亮度变暗无法正常付款
                 // offsetValue += ((z * 100).toInt() / 1000.0 * sensitivity);
             } else if (lux > 0 && z >= 5 && z <= 8) {
-                offsetValue += (((8 - z) * 100 * 2).toInt() / 1000.0 * sensitivity);
+                offsetValue += (((8 - z) * 100 * 2).toInt() / 1000.0F * sensitivity);
             }
         }
 

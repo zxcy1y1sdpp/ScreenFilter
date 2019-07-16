@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.omarea.filter.MainActivity">
+    tools:context="com.omarea.lux.MainActivity">
     <item
         android:id="@+id/sample_edit"
         android:orderInCategory="100"

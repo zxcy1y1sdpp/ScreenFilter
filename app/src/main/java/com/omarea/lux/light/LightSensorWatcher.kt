@@ -1,4 +1,4 @@
-package com.omarea.filter.light
+package com.omarea.lux.light
 
 import android.content.Context
 import android.database.ContentObserver
@@ -8,7 +8,7 @@ import android.hardware.SensorEventListener
 import android.net.Uri
 import android.os.Handler
 import android.provider.Settings
-import com.omarea.filter.GlobalStatus
+import com.omarea.lux.GlobalStatus
 import java.util.*
 
 class LightSensorWatcher(private var context: Context, private var lightHandler: LightHandler) {
@@ -64,7 +64,7 @@ class LightSensorWatcher(private var context: Context, private var lightHandler:
                     val lux = event.values[0]
                     GlobalStatus.currentLux = lux
 
-                    // 自动亮度模式下才根据环境光自动调整滤镜强度
+                    // 自动亮度模式下才根据环境光自动调整亮度
                     if (systemBrightnessMode == Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC) {
                         lightHandler.onLuxChange(lux)
                     }

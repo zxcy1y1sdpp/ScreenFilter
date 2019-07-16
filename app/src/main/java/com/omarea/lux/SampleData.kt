@@ -1,4 +1,4 @@
-package com.omarea.filter
+package com.omarea.lux
 
 import android.content.Context
 import android.util.Log
@@ -13,9 +13,6 @@ import java.nio.charset.Charset
 class SampleData {
     // 样本数据（lux, Sample）
     private var samples = HashMap<Int, Int>()
-
-    // 屏幕亮度低于此值时才开启滤镜功能
-    private var screentMinLight = FilterViewConfig.FILTER_BRIGHTNESS_MAX
 
     private var filterConfig = "Samples.json"
 
@@ -40,20 +37,9 @@ class SampleData {
                 }
                 this.samples.put(lux, filterAlpha)
             }
-            if (jsonObject.has("screentMinLight")) {
-                var screentMinLight = jsonObject.getInt("screentMinLight")
-                if (screentMinLight > FilterViewConfig.FILTER_BRIGHTNESS_MAX) {
-                    screentMinLight = FilterViewConfig.FILTER_BRIGHTNESS_MAX
-                } else if (screentMinLight < FilterViewConfig.FILTER_BRIGHTNESS_MIN) {
-                    screentMinLight = FilterViewConfig.FILTER_BRIGHTNESS_MIN
-                }
-                this.screentMinLight = screentMinLight
-            } else {
-                this.screentMinLight = FilterViewConfig.FILTER_BRIGHTNESS_MAX
-            }
         } catch (ex: Exception) {
-            samples.put(0, FilterViewConfig.FILTER_BRIGHTNESS_MIN)
-            samples.put(10000, FilterViewConfig.FILTER_BRIGHTNESS_MAX)
+            samples.put(0, 10)
+            samples.put(10000, 1000)
         }
     }
 
@@ -64,7 +50,6 @@ class SampleData {
         }
         val config = JSONObject()
         config.putOpt("samples", sampleConfig)
-        config.put("screentMinLight", this.screentMinLight)
         val jsonStr = config.toString(2)
 
         if (!FileWrite.writePrivateFile(jsonStr.toByteArray(Charset.defaultCharset()), filterConfig, context)) {
@@ -114,34 +99,6 @@ class SampleData {
             return samples.get(lux) as Int
         }
         return -1
-    }
-
-    /**
-     * 根据样本计算滤镜浓度和屏幕亮度
-     * @param staticOffset 固定亮度增益 按总亮度的比例增加亮度
-     * @param offsetpractical 按实际亮度的比例增加亮度
-     */
-    public fun getFilterConfig(lux: Float, staticOffset: Double = 0.toDouble(), offsetpractical: Double = 0.toDouble()): FilterViewConfig {
-        val sampleValue = getVitualSample(lux)
-        if (sampleValue != null) {
-            val brightness = ((sampleValue + (FilterViewConfig.FILTER_BRIGHTNESS_MAX * staticOffset)) * (1 + offsetpractical)).toInt()
-            return FilterViewConfig.getConfigByBrightness(brightness, screentMinLight)
-        }
-        return FilterViewConfig.getDefault()
-    }
-
-    /**
-     * 根据意图亮度百分比，获取滤镜配置
-     */
-    public fun getFilterConfigByRatio(ratio: Float): FilterViewConfig {
-        return FilterViewConfig.getConfigByRatio(ratio, screentMinLight)
-    }
-
-    /**
-     * 根据意向屏幕亮度获取配置
-     */
-    public fun getConfigByBrightness(brightness: Int): FilterViewConfig {
-        return FilterViewConfig.getConfigByBrightness(brightness, screentMinLight)
     }
 
     public fun getVitualSample(lux: Int): Int? {
@@ -195,25 +152,5 @@ class SampleData {
      */
     public fun getAllSamples(): HashMap<Int, Int> {
         return this.samples
-    }
-
-    /**
-     * 设置屏幕最低亮度百分比
-     */
-    public fun getScreentMinLight(): Int {
-        return screentMinLight
-    }
-
-    /**
-     * 设置屏幕最低亮度百分比
-     */
-    public fun setScreentMinLight(value: Int) {
-        if (value > FilterViewConfig.FILTER_BRIGHTNESS_MAX) {
-            this.screentMinLight = FilterViewConfig.FILTER_BRIGHTNESS_MAX
-        } else if (value < FilterViewConfig.FILTER_BRIGHTNESS_MIN) {
-            this.screentMinLight = FilterViewConfig.FILTER_BRIGHTNESS_MIN
-        } else {
-            this.screentMinLight = value
-        }
     }
 }

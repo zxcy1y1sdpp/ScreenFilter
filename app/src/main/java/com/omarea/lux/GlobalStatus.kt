@@ -1,15 +1,13 @@
-package com.omarea.filter
+package com.omarea.lux
 
 object GlobalStatus {
     var filterEnabled = false
 
     var currentLux: Float = 0F
-    var currentFilterBrightness: Int = 0
-    var currentFilterAlpah: Int = 0
+    var currentFilterBrightness: Float = 0F
     var sampleData: SampleData? = null
 
     var filterOpen: Runnable? = null
     var filterClose: Runnable? = null
     var filterRefresh: Runnable? = null
-    var screenCap: Runnable? = null
 }

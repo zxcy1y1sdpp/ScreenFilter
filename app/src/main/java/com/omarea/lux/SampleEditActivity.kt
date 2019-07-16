@@ -1,4 +1,4 @@
-package com.omarea.filter
+package com.omarea.lux
 
 import android.content.Context
 import android.graphics.PixelFormat
@@ -18,7 +18,7 @@ import android.widget.Button
 import android.widget.SeekBar
 import android.widget.TextView
 import android.widget.Toast
-import com.omarea.filter.light.LightSensorManager
+import com.omarea.lux.light.LightSensorManager
 import kotlinx.android.synthetic.main.activity_sample_edit.*
 
 class SampleEditActivity : AppCompatActivity() {
@@ -101,19 +101,14 @@ class SampleEditActivity : AppCompatActivity() {
     }
 
     private fun filterUpdate(screenBrightness: Int) {
-        val filterView = filterPopup!!.findViewById<FilterView>(R.id.filter_view)
-        val filterViewConfig = GlobalStatus.sampleData!!.getConfigByBrightness(screenBrightness)
-
         val mWindowManager = getSystemService(Context.WINDOW_SERVICE) as WindowManager
 
         val layoutParams = filterPopup!!.layoutParams as WindowManager.LayoutParams?
         if (layoutParams != null) {
-            val ratio = filterViewConfig.getFilterBrightnessRatio()
+            val ratio = screenBrightness / 1000.0F
             layoutParams.screenBrightness = ratio
             mWindowManager.updateViewLayout(filterPopup, layoutParams)
         }
-
-        filterView.setFilterColorNow(filterViewConfig.filterAlpha)
 
         // 亮度锁定
         // val lp = getWindow().getAttributes()
@@ -125,9 +120,6 @@ class SampleEditActivity : AppCompatActivity() {
      * 更新图表
      */
     private fun updateChart() {
-        screen_light_min.progress = GlobalStatus.sampleData!!.getScreentMinLight()
-        screen_light_min_ratio.text = (screen_light_min.progress / 10.0).toString()
-
         sample_chart.invalidate()
     }
 
@@ -153,41 +145,6 @@ class SampleEditActivity : AppCompatActivity() {
                     })
                     .create()
                     .show()
-        }
-
-        // 屏幕最低亮度调整
-        screen_light_min.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-            }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-            }
-
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                var value = progress
-                if (progress < 1) {
-                    value = 1
-                }
-                if (GlobalStatus.sampleData!!.getScreentMinLight() != value) {
-                    GlobalStatus.sampleData!!.setScreentMinLight(value)
-                    hasChange = true
-                }
-                screen_light_min_ratio.text = (value / 10.0).toString()
-            }
-        })
-
-        screen_light_minus.setOnClickListener {
-            if (screen_light_min.progress > 1) {
-                screen_light_min.progress -= 1
-            }
-        }
-
-        screen_light_plus.setOnClickListener {
-            if (screen_light_min.progress < screen_light_min.max - 1) {
-                screen_light_min.progress += 1
-            } else if (screen_light_min.progress < screen_light_min.max) {
-                screen_light_min.progress = screen_light_min.max
-            }
         }
 
         /*

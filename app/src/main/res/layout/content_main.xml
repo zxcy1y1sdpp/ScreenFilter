@@ -99,28 +99,6 @@
                             android:text="0"
                             android:textSize="11dp" />
                     </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/filter_alpha"
-                            android:textSize="11dp" />
-
-                        <TextView
-                            android:id="@+id/filter_alpha"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="2dp"
-                            android:text="0"
-                            android:textSize="11dp" />
-                    </LinearLayout>
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
@@ -237,15 +215,6 @@
                     android:padding="10dp">
 
                     <Switch
-                        android:id="@+id/hardware_acceleration"
-                        style="@style/option_title"
-                        android:text="@string/hardware_acceleration" />
-
-                    <TextView
-                        style="@style/option_desc"
-                        android:text="@string/hardware_acceleration_desc" />
-
-                    <Switch
                         android:id="@+id/hide_in_recent"
                         style="@style/option_title"
                         android:text="@string/hide_in_recent" />
@@ -280,31 +249,7 @@
 
                     <TextView
                         style="@style/option_desc"
-                        android:layout_marginBottom="0dp"
                         android:text="@string/brightness_control_content" />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-            <!--声明-->
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-                    <TextView
-                        style="@style/option_title"
-                        android:text="@string/statement" />
-
-                    <TextView
-                        style="@style/option_desc"
-                        android:text="@string/statement_content" />
-
                     <TextView
                         style="@style/option_desc"
                         android:layout_marginBottom="0dp"

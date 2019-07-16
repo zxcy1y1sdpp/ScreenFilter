@@ -1,4 +1,4 @@
-package com.omarea.filter.light;
+package com.omarea.lux.light;
 
 import android.content.Context;
 import android.hardware.Sensor;

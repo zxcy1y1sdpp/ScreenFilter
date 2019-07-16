@@ -32,7 +32,7 @@
                         <FrameLayout
                             android:layout_width="4000dp"
                             android:layout_height="400dp">
-                            <com.omarea.filter.SampleDataView
+                            <com.omarea.lux.SampleDataView
                                 android:id="@+id/sample_chart"
                                 android:layout_width="4000dp"
                                 android:layout_height="400dp" />
@@ -54,76 +54,6 @@
                 <TextView
                     style="@style/option_desc"
                     android:text="@string/sample_desc" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:padding="10dp">
-
-                <TextView
-                    style="@style/option_title"
-                    android:text="@string/screen_min_light" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:id="@+id/screen_light_minus"
-                            android:gravity="center"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:background="@android:color/transparent"
-                            android:text="－"
-                            android:textColor="@color/colorPrimary" />
-                        <SeekBar
-                            android:id="@+id/screen_light_min"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:max="1000"
-                            android:min="0"
-                            android:progress="1000" />
-
-                        <TextView
-                            android:id="@+id/screen_light_plus"
-                            android:gravity="center"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:background="@android:color/transparent"
-                            android:text="＋"
-                            android:textColor="@color/colorPrimary" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:text="100"
-                        android:id="@+id/screen_light_min_ratio"
-                        android:layout_width="40dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="end" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:text="%" />
-                </LinearLayout>
-
-                <TextView
-                    android:layout_marginTop="10dp"
-                    style="@style/option_desc"
-                    android:text="@string/screen_min_light_desc" />
             </LinearLayout>
 
             <LinearLayout
